@@ -122,7 +122,7 @@ set_target_properties_obs(obs-studio PROPERTIES FOLDER frontend OUTPUT_NAME "$<I
 set(_km_web "${CMAKE_SOURCE_DIR}/kawalan-majlis")
 if(EXISTS "${_km_web}/kawalan-majlis.html")
   set(_km_dest "${OBS_DATA_DESTINATION}/obs-studio/kawalan-majlis")
-  set(_km_files kawalan-majlis.html paparan.html LESEN.txt contoh-senarai.xlsx)
+  set(_km_files kawalan-majlis.html paparan.html PASANG.html LESEN.txt COPYING contoh-senarai.xlsx)
   set(_km_dirs lib fonts)
   foreach(_f IN LISTS _km_files)
     list(APPEND _km_copy COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${_km_web}/${_f}" "${OBS_OUTPUT_DIR}/$<CONFIG>/${_km_dest}/${_f}")
