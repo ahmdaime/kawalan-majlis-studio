@@ -985,13 +985,21 @@ void BilikKawalan::SegarMixer()
 	auto tambah = [](void *data, obs_source_t *s) {
 		BilikKawalan *b = static_cast<BilikKawalan *>(data);
 		uint32_t f = obs_source_get_output_flags(s);
-		if (!(f & OBS_SOURCE_AUDIO) || obs_source_removed(s) || strcmp(obs_source_get_name(s), PAPARAN) == 0)
+		const char *nama = obs_source_get_name(s);
+		if (!(f & OBS_SOURCE_AUDIO) || obs_source_removed(s) || !nama || strcmp(nama, PAPARAN) == 0)
 			return true;
 		VolControl *c = new VolControl(OBSSource(s), false, false);
 		b->mixerRow->addWidget(c);
 		b->saluran.push_back(c);
 		return true;
 	};
+	/* Global audio devices first (Desktop Audio, Mic/Aux: e.g. the hall's microphone); obs_enum_sources
+	   only lists sources that live in scenes. */
+	for (uint32_t i = 1; i <= 6; i++) {
+		OBSSourceAutoRelease s = obs_get_output_source(i);
+		if (s)
+			tambah(this, s);
+	}
 	obs_enum_sources(tambah, this);
 	mixerRow->addStretch(1);
 }

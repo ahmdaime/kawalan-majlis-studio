@@ -1257,7 +1257,9 @@ void OBSBasic::OBSInit()
 		config_save_safe(App()->GetUserConfig(), "tmp", nullptr);
 	}
 
-	if (!first_run && !has_last_version && !Active())
+	/* Kawalan Majlis Studio: no Auto-Configuration Wizard on first start; it would sit (in English) on top of
+	   the Bilik Kawalan and block closing. It stays available in Tools, and in plain OBS mode (KM_KLASIK). */
+	if (!first_run && !has_last_version && !Active() && qEnvironmentVariableIsSet("KM_KLASIK"))
 		QMetaObject::invokeMethod(this, "on_autoConfigure_triggered", Qt::QueuedConnection);
 
 #if (defined(_WIN32) || defined(__APPLE__)) && (OBS_RELEASE_CANDIDATE > 0 || OBS_BETA > 0)
@@ -1339,6 +1341,12 @@ void OBSBasic::OBSInit()
 		connect(bilik, &QAction::triggered, this, &OBSBasic::KMBukaBilik);
 		if (!qEnvironmentVariableIsSet("KM_KLASIK"))
 			QTimer::singleShot(0, this, [this]() {
+				/* Fresh profile: Studio Mode came on before the first scene was created, so nothing is on
+				   Program. Switching Studio Mode off and on puts the current scene on Program. */
+				if (IsPreviewProgramMode() && !OBSGetStrongRef(programScene)) {
+					SetPreviewProgramMode(false);
+					SetPreviewProgramMode(true);
+				}
 				KMBukaBilik();
 				hide();
 			});

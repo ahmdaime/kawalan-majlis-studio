@@ -54,11 +54,14 @@ void OBSStudioAPI::obs_frontend_get_scenes(struct obs_frontend_source_list *sour
 obs_source_t *OBSStudioAPI::obs_frontend_get_current_scene()
 {
 	if (main->IsPreviewProgramMode()) {
-		return obs_weak_source_get_source(main->programScene);
-	} else {
-		OBSSource source = main->GetCurrentSceneSource();
-		return obs_source_get_ref(source);
+		obs_source_t *program = obs_weak_source_get_source(main->programScene);
+		/* Kawalan Majlis Studio: Studio Mode switched on before the first scene existed (fresh profile)
+		   leaves no program scene; callers such as obs-websocket would then crash on a NULL name. */
+		if (program)
+			return program;
 	}
+	OBSSource source = main->GetCurrentSceneSource();
+	return obs_source_get_ref(source);
 }
 
 void OBSStudioAPI::obs_frontend_set_current_scene(obs_source_t *scene)
