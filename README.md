@@ -9,10 +9,10 @@ Tukar kamera, papar nama penerima, main lagu dan slaid. Semua dalam satu skrin.
 
 ![Percuma](https://img.shields.io/badge/harga-PERCUMA-f0c95e?style=for-the-badge)
 ![Bahasa Melayu](https://img.shields.io/badge/bahasa-Melayu-11744b?style=for-the-badge)
-![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-0b5a39?style=for-the-badge)
+![Windows](https://img.shields.io/badge/Windows-64--bit-0b5a39?style=for-the-badge)
 ![Lesen GPL](https://img.shields.io/badge/lesen-GPL--2.0-555?style=for-the-badge)
 
-### [⬇️ Muat turun versi terkini (Windows)](https://github.com/ahmdaime/kawalan-majlis-studio/releases)
+### [⬇️ Muat turun versi terkini (Windows)](https://alat.cikguaime.com/kawalan-majlis)
 
 <sub>Versi beta. Oleh cikgu, untuk cikgu.</sub>
 
@@ -94,7 +94,7 @@ Tidak, kecuali untuk slaid Canva (dimuat dari internet) dan siaran langsung. Nam
 <details>
 <summary><b>Laptop macam mana yang sesuai?</b></summary>
 
-Windows 10 atau 11, 64-bit. Untuk 3 kamera NDI dan siaran langsung, laptop dengan kad grafik (contohnya laptop gaming) lebih selesa.
+Windows 64-bit (diuji pada Windows 11; Windows 10 belum diuji). Untuk 3 kamera NDI dan siaran langsung, laptop dengan kad grafik (contohnya laptop gaming) lebih selesa.
 </details>
 
 <details>
