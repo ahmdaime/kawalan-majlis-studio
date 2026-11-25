@@ -1,50 +1,132 @@
+<div align="center">
+
+<img src="frontend/forms/images/kawalan-majlis.svg" width="110" alt="Ikon Kawalan Majlis Studio">
+
 # Kawalan Majlis Studio
 
-Aplikasi siaran langsung dan rakaman untuk **majlis sekolah**, dibina atas [OBS Studio](https://obsproject.com)
-(GPL-2.0). Dibina oleh seorang guru di Malaysia supaya guru lain boleh mengendalikan siaran majlis seperti
-studio TV, tanpa perlu mahir OBS.
+**Siaran langsung dan rakaman majlis sekolah, macam studio TV.**<br>
+Tukar kamera, papar nama penerima, main lagu dan slaid. Semua dalam satu skrin.
 
-> Kawalan Majlis Studio ialah fork bebas OBS Studio. Ia **bukan** produk rasmi OBS Project dan tidak disokong
-> oleh mereka. Masalah dengan aplikasi ini: laporkan di sini, bukan kepada OBS Project.
+![Percuma](https://img.shields.io/badge/harga-PERCUMA-f0c95e?style=for-the-badge)
+![Bahasa Melayu](https://img.shields.io/badge/bahasa-Melayu-11744b?style=for-the-badge)
+![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-0b5a39?style=for-the-badge)
+![Lesen GPL](https://img.shields.io/badge/lesen-GPL--2.0-555?style=for-the-badge)
 
-## Apa yang ada
+### [⬇️ Muat turun versi terkini (Windows)](https://github.com/ahmdaime/kawalan-majlis-studio/releases)
 
-- **Bilik Kawalan** terus sebaik dibuka: PREVIEW (oren) dan PROGRAM (merah), CUT / FADE / T-bar / FTB,
-  deretan input (kekunci 1–9, Enter = CUT, F = FADE), audio, REC, LIVE (henti = tahan 2 saat).
-- **Panel Pengarah** ([kawalan-majlis](https://github.com/ahmdaime/kawalan-majlis)) di sebelah kanan:
-  - senarai penerima dari Excel (Nama, Kelas, Anugerah), butang kuning **PAPAR** satu-satunya cara ke udara;
-  - aturcara berturutan: nama, lagu, video, slaid PDF, gambar; muzik latar yang mengecil sendiri;
-  - **slaid Canva** dengan animasi (tampal pautan; tukar slaid dengan ◀ ▶ atau clicker PageUp/PageDown);
-  - input **Skrin Projektor** (tangkap skrin kedua, contohnya Canva Present);
-  - pereka paparan nama, termasuk templat **Kad hijau emas**.
-- **Kamera NDI** (contohnya kamera PTZ) melalui [DistroAV](https://github.com/DistroAV/DistroAV).
-  Jika NDI belum dipasang, Studio memberitahu dalam Bahasa Melayu dan membuka laman muat turun rasmi.
-- Pilihan lalai yang selamat untuk majlis: Studio Mode tanpa "Duplicate Scene" (lagu dan video sentiasa
-  sampai ke siaran), lagu MP3 hanya berbunyi (gambar kulit album tidak dipapar).
-- Mudah alih: satu folder, tidak perlu dipasang. Tetapan disimpan dalam folder itu sendiri.
+<sub>Versi beta. Oleh cikgu, untuk cikgu.</sub>
 
-Semua tetapan OBS penuh masih ada: butang ⚙ (Tetapan lanjutan).
+</div>
 
-## Muat turun dan cuba (Windows 10/11, 64-bit)
+---
 
-1. Muat turun zip terkini di **[Releases](https://github.com/ahmdaime/kawalan-majlis-studio/releases)**.
-2. Ekstrak ke folder, contohnya `C:\Kawalan Majlis Studio`.
-3. Klik dua kali `bin\64bit\obs64.exe`.
-4. Untuk kamera NDI: pasang [NDI Tools](https://ndi.video/tools/download/) (percuma).
+![Bilik Kawalan: Preview, Program, peralihan, input kamera, audio dan Panel Pengarah](docs/kawalan-majlis/bilik-kawalan.jpg)
 
-Panduan penggunaan panel: `data\obs-studio\kawalan-majlis\PASANG.html` dalam folder zip.
+## Kenapa aplikasi ini dibina?
 
-## Mahu membantu?
+Cikgu yang pernah jadi AJK livestream majlis mesti faham. 🥲
 
-- **Uji** di sekolah anda dan laporkan masalah atau cadangan di tab **Issues** (sertakan gambar skrin dan
-  langkah untuk mengulang masalah).
-- **Pembaikan kod:** hantar **Pull Request**. Kod Bilik Kawalan: `frontend/widgets/BilikKawalan.*`.
-  Panel web ialah submodul `kawalan-majlis/` (repo berasingan).
+Satu tangan tukar kamera. Satu tangan cari nama murid. Telinga dengar pengacara.
+Mata pandang skrin OBS yang penuh butang. Tersilap tekan, satu dewan nampak.
 
-## Membina dari kod sumber
+Kawalan Majlis Studio susun semua itu dalam **satu skrin yang jelas**, dengan butang besar dan
+peraturan yang menjaga cikgu daripada tersilap semasa majlis berjalan.
 
-Sama seperti OBS Studio 32 di Windows ([panduan OBS](https://github.com/obsproject/obs-studio/wiki/Build-Instructions-For-Windows)):
-Visual Studio 2022, CMake 3.28+, Windows SDK 10.0.22621+. Bina di pemacu NTFS (bukan exFAT).
+## Apa yang cikgu boleh buat
+
+| | |
+|---|---|
+| 🎥 **Tukar kamera macam studio TV** | Klik kamera (atau tekan 1, 2, 3) untuk sediakan di **PREVIEW**. Tekan **CUT** atau **FADE** untuk keluar ke **PROGRAM**. Ada T-bar dan FTB (skrin hitam). |
+| 🏅 **Nama penerima dari Excel** | Masukkan senarai (Nama, Kelas, Anugerah). Semasa majlis, nama seterusnya sentiasa sedia dalam kotak kuning. Tekan **PAPAR**. Siap. |
+| 🎵 **Lagu dan video** | Main lagu iringan, Negaraku, video sekolah. Semasa lagu dimainkan, butang dikunci supaya lagu tak terpotong. |
+| 🖼️ **Slaid Canva dengan animasi** | Tampal pautan Canva. Tukar slaid dengan butang ◀ ▶ atau clicker. Slaid PDF dan gambar pun boleh. |
+| 📽️ **Skrin projektor** | Tangkap skrin kedua (contohnya Canva Present) sebagai satu input. |
+| 📹 **Kamera PTZ / NDI** | Kamera rangkaian NDI terus dikesan. Kamera USB dan kad HDMI capture juga boleh. |
+| 🎶 **Muzik latar** | Muzik berulang semasa menunggu, mengecil sendiri bila lagu aturcara dimainkan. |
+| 🔴 **Rakam dan siar langsung** | REC dan LIVE ke YouTube atau Facebook. Henti siaran perlu ditahan 2 saat (elak tertekan). |
+
+### Kad nama yang cantik, boleh direka sendiri
+
+![Kad nama hijau emas di atas gambar kamera](docs/kawalan-majlis/kad-nama.jpg)
+
+Pilih templat (termasuk **Kad hijau emas**), tukar fon dan warna, atau letak gambar latar sendiri.
+Nama yang panjang mengecil sendiri supaya kekal kemas dalam kad.
+
+## Mula dalam 5 minit
+
+1. **[Muat turun zip](https://github.com/ahmdaime/kawalan-majlis-studio/releases)** dan ekstrak, contohnya ke `C:\Kawalan Majlis Studio`.
+2. Klik dua kali **`BUKA Kawalan Majlis Studio.bat`**.<br>
+   <sub>Jika Windows bertanya (SmartScreen): *More info* → *Run anyway*. Aplikasi ini belum ditandatangani secara digital.</sub>
+3. Di panel kanan, tekan **Persediaan** dan ikut langkah 1 hingga 6: sambung, senarai penerima, aturcara, slaid Canva, muzik latar, reka paparan nama.
+4. Tekan **Majlis**. Sedia!
+
+Kamera NDI (contohnya kamera PTZ): pasang [NDI Tools](https://ndi.video/tools/download/) (percuma).
+Studio akan beritahu jika NDI belum dipasang.
+
+## Semasa majlis
+
+| Kekunci | Apa berlaku |
+|---|---|
+| `1` – `9` | Pilih kamera / input ke PREVIEW |
+| `Enter` | CUT ke PROGRAM |
+| `F` | FADE ke PROGRAM |
+| `Space` | **PAPAR** (butang kuning) |
+| `→` / `←` | Nama atau item seterusnya / sebelum |
+| `Esc` | SOROK nama. Untuk lagu: tekan dua kali untuk HENTI |
+| `PageDown` / `PageUp` | Clicker: tukar slaid Canva semasa ke udara |
+
+Dalam panel: **kotak KUNING** = sedia, belum keluar. **Kotak MERAH** = sedang ke udara. Nama, lagu dan slaid hanya keluar ke skrin bila cikgu tekan butang kuning.
+
+## Soalan lazim
+
+<details>
+<summary><b>Betul ke percuma?</b></summary>
+
+Ya. Percuma dan sumber terbuka (lesen GPL). Cikgu boleh guna, salin dan kongsi dengan sekolah lain.
+</details>
+
+<details>
+<summary><b>Perlu internet?</b></summary>
+
+Tidak, kecuali untuk slaid Canva (dimuat dari internet) dan siaran langsung. Nama, lagu, video dan slaid PDF berfungsi tanpa internet.
+</details>
+
+<details>
+<summary><b>Laptop macam mana yang sesuai?</b></summary>
+
+Windows 10 atau 11, 64-bit. Untuk 3 kamera NDI dan siaran langsung, laptop dengan kad grafik (contohnya laptop gaming) lebih selesa.
+</details>
+
+<details>
+<summary><b>Ada untuk Mac?</b></summary>
+
+Studio ini untuk Windows sahaja buat masa ini. Pengguna Mac boleh cuba <a href="https://github.com/ahmdaime/kawalan-majlis">panel Kawalan Majlis</a> di dalam OBS Studio biasa (pemasang Mac masih dalam ujian).
+</details>
+
+<details>
+<summary><b>Saya dah biasa dengan OBS. Boleh guna tetapan OBS penuh?</b></summary>
+
+Boleh. Tekan butang ⚙ (Tetapan lanjutan) untuk membuka semua tetapan OBS: sumber, audio, siaran, rakaman.
+</details>
+
+## Mahu membantu? 🙏
+
+Versi ini masih **beta**. Cara paling mudah untuk membantu:
+
+- **Uji di sekolah cikgu**, kemudian ceritakan pengalaman di tab **[Issues](https://github.com/ahmdaime/kawalan-majlis-studio/issues)**. Sertakan gambar skrin.
+- **Ada idea?** Kongsi juga di Issues. Cadangan cikgu sangat dialu-alukan.
+- **Tahu menulis kod?** Hantar Pull Request. Panduan di bawah.
+
+<details>
+<summary><b>Untuk pembangun: struktur kod, membina dan ujian</b></summary>
+
+Kawalan Majlis Studio ialah fork bebas [OBS Studio](https://obsproject.com) 32.0.4.
+
+- Bilik Kawalan (Qt, native): `frontend/widgets/BilikKawalan.*`
+- Panel Pengarah (web, dimuat dalam Studio): submodul `kawalan-majlis/` ([repo berasingan](https://github.com/ahmdaime/kawalan-majlis))
+- Kamera NDI: [DistroAV](https://github.com/DistroAV/DistroAV), disalin ke pakej keluaran
+
+**Membina (Windows):** Visual Studio 2022, CMake 3.28+, Windows SDK 10.0.22621+. Bina di pemacu NTFS (bukan exFAT).
 
 ```
 git clone --recursive https://github.com/ahmdaime/kawalan-majlis-studio.git
@@ -53,15 +135,17 @@ cmake --preset windows-x64
 cmake --build build_x64 --config RelWithDebInfo
 ```
 
-Hasil: `build_x64\rundir\RelWithDebInfo\bin\64bit\obs64.exe`. Untuk kamera NDI, salin DistroAV (versi
-mudah alih) ke `obs-plugins\64bit` dan `data\obs-plugins`.
+Hasil: `build_x64\rundir\RelWithDebInfo\bin\64bit\obs64.exe`.
+Panduan penuh OBS: [Build Instructions For Windows](https://github.com/obsproject/obs-studio/wiki/Build-Instructions-For-Windows).
 
-Ujian hidup (tanpa tetikus, melalui obs-websocket dan CDP): lihat `km-ujian/README.md`.
+**Ujian hidup** (memandu aplikasi sebenar melalui obs-websocket dan CDP, tanpa tetikus): lihat [`km-ujian/README.md`](km-ujian/README.md).
+Ujian panel tanpa OBS: `node kawalan-majlis/ujian/uji-aturcara.cjs`.
+</details>
 
 ## Lesen
 
-GNU General Public License versi 2 atau kemudian (GPL-2.0-or-later), sama seperti OBS Studio. Lihat `COPYING`.
-Hak cipta OBS Studio milik penyumbang OBS Project; tambahan Kawalan Majlis (c) 2026 Cikgu Aime dan penyumbang.
-Nama dan logo "OBS" ialah tanda dagangan OBS Project dan tidak digunakan sebagai nama produk ini.
+GNU General Public License versi 2 atau kemudian (GPL-2.0-or-later), sama seperti OBS Studio. Lihat [`COPYING`](COPYING).
 
-README asal OBS Studio: `README.rst`.
+Hak cipta OBS Studio milik penyumbang OBS Project. Tambahan Kawalan Majlis (c) 2026 Cikgu Aime dan penyumbang.
+Kawalan Majlis Studio **bukan** produk rasmi OBS Project dan tidak disokong oleh mereka; nama dan logo "OBS"
+ialah tanda dagangan OBS Project. README asal OBS Studio: [`README.rst`](README.rst).
