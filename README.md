@@ -34,7 +34,7 @@ peraturan yang menjaga cikgu daripada tersilap semasa majlis berjalan.
 
 ## Apa yang cikgu boleh buat
 
-| | |
+| Ciri | Apa cikgu buat |
 |---|---|
 | 🎥 **Tukar kamera macam studio TV** | Klik kamera (atau tekan 1, 2, 3) untuk sediakan di **PREVIEW**. Tekan **CUT** atau **FADE** untuk keluar ke **PROGRAM**. Ada T-bar dan FTB (skrin hitam). |
 | 🏅 **Nama penerima dari Excel** | Masukkan senarai (Nama, Kelas, Anugerah). Semasa majlis, nama seterusnya sentiasa sedia dalam kotak kuning. Tekan **PAPAR**. Siap. |
