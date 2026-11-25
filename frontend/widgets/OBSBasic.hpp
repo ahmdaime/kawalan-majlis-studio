@@ -46,6 +46,7 @@ extern volatile bool recording_paused;
 class ColorSelect;
 class OBSAbout;
 class OBSBasicAdvAudio;
+class BilikKawalan;
 class OBSBasicFilters;
 class OBSBasicInteraction;
 class OBSBasicProperties;
@@ -198,6 +199,13 @@ static inline void ClearProcessPriority()
 #endif
 
 class OBSBasic : public OBSMainWindow {
+	/* Kawalan Majlis Studio: the Bilik Kawalan is the main window; OBS's own window is "Tetapan lanjutan". */
+public:
+	QPointer<BilikKawalan> kmBilik;
+	bool kmKeluar = false;
+	void KMBukaBilik();
+	void KMTetapanLanjutan();
+
 	Q_OBJECT
 	Q_PROPERTY(QIcon imageIcon READ GetImageIcon WRITE SetImageIcon DESIGNABLE true)
 	Q_PROPERTY(QIcon colorIcon READ GetColorIcon WRITE SetColorIcon DESIGNABLE true)
@@ -219,6 +227,7 @@ class OBSBasic : public OBSMainWindow {
 
 	friend class OBSAbout;
 	friend class OBSBasicPreview;
+	friend class BilikKawalan;
 	friend class OBSBasicStatusBar;
 	friend class OBSBasicSourceSelect;
 	friend class OBSBasicSettings;

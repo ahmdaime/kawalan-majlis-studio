@@ -7,3 +7,7 @@
 [submodule "plugins/obs-websocket"]
 	path = plugins/obs-websocket
 	url = https://github.com/obsproject/obs-websocket.git
+[submodule "kawalan-majlis"]
+	path = kawalan-majlis
+	url = https://github.com/ahmdaime/kawalan-majlis.git
+	branch = main

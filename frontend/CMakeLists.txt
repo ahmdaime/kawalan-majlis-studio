@@ -117,3 +117,30 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" PREFIX "Header Files" FILES ${ta
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" PREFIX "Qt Files" FILES ${target_qt_sources})
 
 set_target_properties_obs(obs-studio PROPERTIES FOLDER frontend OUTPUT_NAME "$<IF:$<PLATFORM_ID:Windows>,obs64,obs>")
+
+# Kawalan Majlis Studio: the Kawalan Majlis web panel (git submodule kawalan-majlis) ships inside the app.
+set(_km_web "${CMAKE_SOURCE_DIR}/kawalan-majlis")
+if(EXISTS "${_km_web}/kawalan-majlis.html")
+  set(_km_dest "${OBS_DATA_DESTINATION}/obs-studio/kawalan-majlis")
+  set(_km_files kawalan-majlis.html paparan.html LESEN.txt contoh-senarai.xlsx)
+  set(_km_dirs lib fonts)
+  foreach(_f IN LISTS _km_files)
+    list(APPEND _km_copy COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${_km_web}/${_f}" "${OBS_OUTPUT_DIR}/$<CONFIG>/${_km_dest}/${_f}")
+    install(FILES "${_km_web}/${_f}" DESTINATION "${_km_dest}" COMPONENT Runtime)
+  endforeach()
+  foreach(_d IN LISTS _km_dirs)
+    list(APPEND _km_copy COMMAND "${CMAKE_COMMAND}" -E copy_directory "${_km_web}/${_d}" "${OBS_OUTPUT_DIR}/$<CONFIG>/${_km_dest}/${_d}")
+    install(DIRECTORY "${_km_web}/${_d}" DESTINATION "${_km_dest}" COMPONENT Runtime)
+  endforeach()
+  add_custom_command(
+    TARGET obs-studio
+    POST_BUILD
+    COMMAND "${CMAKE_COMMAND}" -E make_directory "${OBS_OUTPUT_DIR}/$<CONFIG>/${_km_dest}"
+    ${_km_copy}
+    COMMENT "Copy Kawalan Majlis web panel"
+    VERBATIM
+  )
+else()
+  message(WARNING "Kawalan Majlis web panel missing: run git submodule update --init kawalan-majlis")
+endif()
+

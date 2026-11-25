@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Kawalan Majlis Studio icon: a gold "play" on a deep green tile, with the gold ribbon line of the name card and a live dot. -->
+  <defs>
+    <linearGradient id="hijau" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#11744b"/>
+      <stop offset="1" stop-color="#063a24"/>
+    </linearGradient>
+    <linearGradient id="emas" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff1c4"/>
+      <stop offset=".5" stop-color="#f0c95e"/>
+      <stop offset="1" stop-color="#c8952f"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="url(#hijau)"/>
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="none" stroke="#c8952f" stroke-width="6"/>
+  <path d="M100 70 L184 122 L100 174 Z" fill="url(#emas)" stroke="#fff1c4" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="52" y="194" width="152" height="10" rx="5" fill="url(#emas)"/>
+  <circle cx="196" cy="62" r="16" fill="#e5484d" stroke="#ffffff" stroke-width="5"/>
+</svg>

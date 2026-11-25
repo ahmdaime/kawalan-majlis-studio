@@ -52,6 +52,8 @@ target_sources(
     widgets/OBSBasicStatusBar.cpp
     widgets/OBSBasicStatusBar.hpp
     widgets/OBSMainWindow.hpp
+    widgets/BilikKawalan.cpp
+    widgets/BilikKawalan.hpp
     widgets/OBSProjector.cpp
     widgets/OBSProjector.hpp
     widgets/OBSQTDisplay.cpp

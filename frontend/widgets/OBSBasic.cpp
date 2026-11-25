@@ -45,6 +45,7 @@
 #include <utility/WhatsNewInfoThread.hpp>
 #endif
 #include <widgets/OBSProjector.hpp>
+#include <widgets/BilikKawalan.hpp>
 
 #include <OBSStudioAPI.hpp>
 #ifdef BROWSER_AVAILABLE
@@ -1026,6 +1027,8 @@ void OBSBasic::OBSInit()
      */
 	RefreshSceneCollections(true);
 
+	KMSediakanNDI(); /* Kawalan Majlis Studio: find NDI before DistroAV loads */
+	KMSediaWebSocket(); /* Kawalan Majlis Studio: obs-websocket on before it loads */
 	App()->loadAppModules(mfi);
 
 	BPtr<char *> failed_modules = mfi.failed_modules;
@@ -1054,7 +1057,10 @@ void OBSBasic::OBSInit()
 
 	InitPrimitives();
 
-	sceneDuplicationMode = config_get_bool(App()->GetUserConfig(), "BasicWindow", "SceneDuplicationMode");
+	/* Kawalan Majlis Studio: never duplicate the Program scene in Studio Mode. The panel shows and hides the
+	   song/video item in the live scene; on a duplicate that change would never reach the broadcast. */
+	sceneDuplicationMode = false;
+	config_set_bool(App()->GetUserConfig(), "BasicWindow", "SceneDuplicationMode", false);
 	swapScenesMode = config_get_bool(App()->GetUserConfig(), "BasicWindow", "SwapScenesMode");
 	editPropertiesMode = config_get_bool(App()->GetUserConfig(), "BasicWindow", "EditPropertiesMode");
 
@@ -1326,6 +1332,17 @@ void OBSBasic::OBSInit()
 
 	UpdatePreviewProgramIndicators();
 	OnFirstLoad();
+
+	/* Kawalan Majlis Studio: open straight into the Bilik Kawalan (KM_KLASIK=1 keeps plain OBS). */
+	{
+		QAction *bilik = ui->menuTools->addAction("Bilik Kawalan (Kawalan Majlis)");
+		connect(bilik, &QAction::triggered, this, &OBSBasic::KMBukaBilik);
+		if (!qEnvironmentVariableIsSet("KM_KLASIK"))
+			QTimer::singleShot(0, this, [this]() {
+				KMBukaBilik();
+				hide();
+			});
+	}
 
 	if (!hideWindowOnStart)
 		activateWindow();
@@ -1655,10 +1672,41 @@ void OBSBasic::close()
 	OBSMainWindow::close();
 }
 
+void OBSBasic::KMBukaBilik()
+{
+	if (!kmBilik) {
+		kmBilik = new BilikKawalan(nullptr);
+		kmBilik->showMaximized(); /* operators want the whole screen */
+	} else {
+		kmBilik->show();
+	}
+	kmBilik->raise();
+	kmBilik->activateWindow();
+}
+
+void OBSBasic::KMTetapanLanjutan()
+{
+	show();
+	raise();
+	activateWindow();
+}
+
 void OBSBasic::closeEvent(QCloseEvent *event)
 {
 	if (isClosePromptOpen() || isClosing()) {
 		return;
+	}
+
+	/* With the Bilik Kawalan open, closing OBS's own window (when the teacher opened it as "Tetapan
+	 * lanjutan") only hides it. A close request while it is already hidden comes from Windows itself
+	 * (shutdown, logoff, taskkill): then the whole app closes properly. */
+	if (kmBilik && !kmKeluar) {
+		if (isVisible()) {
+			event->ignore();
+			hide();
+			return;
+		}
+		kmKeluar = true;
 	}
 
 	if (isVisible()) {
@@ -1916,6 +1964,10 @@ void OBSBasic::closeWindow()
 
 	isClosing_ = true;
 
+	/* Kawalan Majlis: its video displays and web panel go before OBS's own. */
+	if (kmBilik)
+		delete kmBilik.data();
+
 	/* While closing, a resize event to OBSQTDisplay could be triggered.
 	 * The graphics thread on macOS dispatches a lambda function to be
 	 * executed asynchronously in the main thread. However, the display is
@@ -2054,11 +2106,8 @@ void OBSBasic::UpdateTitleBar()
 	const char *profile = config_get_string(App()->GetUserConfig(), "Basic", "Profile");
 	const char *sceneCollection = config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection");
 
-	name << "OBS ";
-	if (previewProgramMode)
-		name << "Studio ";
-
-	name << App()->GetVersionString(false);
+	/* Kawalan Majlis Studio: its own name (the OBS name and logo belong to the OBS Project). */
+	name << "Kawalan Majlis Studio - Tetapan lanjutan (berasaskan OBS " << App()->GetVersionString(false) << ")";
 	if (safe_mode)
 		name << " (" << Str("TitleBar.SafeMode") << ")";
 	if (App()->IsPortableMode())
